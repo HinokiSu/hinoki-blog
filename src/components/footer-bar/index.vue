@@ -1,8 +1,8 @@
 <template>
   <div class="footer-wrapper">
-    <p class="icp-info">
+    <div class="icp-info">
       <a href="https://beian.miit.gov.cn/">鲁ICP备2021045142号-1</a>
-    </p>
+    </div>
   </div>
 </template>
 
@@ -10,6 +10,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
+  name: 'FooterBar',
   setup() {
     return {}
   },
@@ -18,16 +19,12 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .footer-wrapper {
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-  padding-bottom: 5px;
-
+  text-align: center;
   .icp-info {
     a {
       color: inherit;
       font-size: 14px;
-      color: #222;
+      color: var(--accents-6);
     }
   }
 }
