@@ -5,55 +5,31 @@
     </div>
     <div class="nav-container">
       <div class="nav-link">
-        <router-link :to="navLink.home.link"> {{navLink.home.title}} </router-link>
+        <router-link :to="{ name: 'home' }">Home</router-link>
       </div>
       <div class="delimiter"></div>
       <div class="nav-link">
-        <router-link :to="navLink.article.link"> {{navLink.article.title}} </router-link>
+        <router-link :to="{ name: '' }">Article</router-link>
       </div>
 
       <div class="delimiter"></div>
       <div class="nav-link">
-        <router-link :to="navLink.about.link"> {{navLink.about.title}} </router-link>
+        <router-link :to="{ name: '' }">About</router-link>
       </div>
     </div>
     <div class="language">
       <p>EN&searhk;</p>
     </div>
-    <fold-nav :nav-link="navLink" @click="changeState" :isFold="foldState"></fold-nav>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
-import FoldNav from '@web/components/nav-bar/foldNav.vue'
 export default defineComponent({
-  components: {
-    FoldNav,
-  },
+  name: 'NavgationBar',
+  components: {},
   setup() {
     const foldState = ref<boolean>(false)
-
-    const navLink = reactive({
-      home: {
-        title: 'Home',
-        link: {
-          name: 'home'
-        }
-      },
-      article: {
-        title: 'Article',
-        link: {
-          name: 'article'
-        }
-      },
-      about: {
-        title: 'About',
-        link: {
-          name: 'about'
-        }
-      }
-    })
 
     const changeState = () => {
       foldState.value = !foldState.value
@@ -61,7 +37,6 @@ export default defineComponent({
     return {
       changeState,
       foldState,
-      navLink
     }
   },
 })
@@ -70,6 +45,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .nav-wrapper {
   height: 80px;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 9fr 0.5fr;
   align-items: center;
