@@ -2,28 +2,49 @@
   <div class="article-item wrapper">
     <div class="item-container">
       <div class="time">
-        <div class="day">03</div>
-        <div class="month">2月</div>
+        <div class="day">{{ publishTime.day }}</div>
+        <div class="month">{{ publishTime.month }}</div>
       </div>
-      <div class="content">
-        <div class="title">这是标题</div>
-        <div class="category-tabs">
-          <fe-tag text="前端" type="success" use-invert />
-          <fe-tag text="Vue" type="success" use-invert />
+      <div class="article-body">
+        <div class="article-header">{{ article?.title }}</div>
+        <div class="article-main">
+          <div class="category-tabs">
+            <fe-tag :text="tag.name" v-for="tag in article?.classification" :key="tag._id" type="success" use-invert />
+          </div>
+          <div class="description">{{ article?.description }}</div>
         </div>
-        <div class="description">这是简短的文章描述</div>
+        <div class="article-footer">
+          <router-link :to="{ name: 'home' }">
+            <div class="read-more">Read More</div>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { IArticle } from '@web/interfaces/IArticle'
+import { timeHasMonthDay } from '@web/utils/formatter'
+import { computed, defineComponent, PropType, ref, watchEffect } from 'vue'
 
 export default defineComponent({
   name: 'ArticleItem',
-  setup() {
-    return {}
+  props: {
+    article: {
+      type: Object as PropType<IArticle>,
+    },
+  },
+  setup(props) {
+    const time = computed(() => <string>props.article?.updatedAt)
+    const publishTime = ref()
+    watchEffect(() => {
+      publishTime.value = timeHasMonthDay(time.value)
+    })
+
+    return {
+      publishTime,
+    }
   },
 })
 </script>
@@ -32,12 +53,11 @@ export default defineComponent({
 .article-item {
   &.wrapper {
     width: 100%;
-
     margin: 8px;
     box-shadow: 0 0 36px var(--accents-2);
     border-radius: 24px;
     transition: all 0.4s ease;
-    
+
     &:hover {
       box-shadow: 0 0 12px var(--accents-2);
     }
@@ -66,18 +86,43 @@ export default defineComponent({
       }
     }
 
-    .content {
+    .article-body {
       display: flex;
       flex-direction: column;
       row-gap: 12px;
-      .title {
-        font-size: 38px;
+      padding-right: 8px;
+
+      .article-header {
+        font-size: 36px;
         font-weight: 500;
       }
 
-      .category-tabs {
+      .article-main {
         display: flex;
-        column-gap: 8px;
+        flex-direction: column;
+        row-gap: 8px;
+        .category-tabs {
+          display: flex;
+          column-gap: 8px;
+        }
+      }
+
+      .article-footer {
+        align-self: flex-end;
+
+        .read-more {
+          padding: 12px 16px;
+          background-color: var(--success-default);
+          color: var(--accents-1);
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 16px;
+          transition: all 0.4s ease;
+
+          &:hover {
+            background-color: var(--success-dark);
+          }
+        }
       }
     }
   }

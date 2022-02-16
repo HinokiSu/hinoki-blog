@@ -21,7 +21,11 @@
         <div class="caption">Recently Article</div>
         <!-- 列举最近发布的3篇文章 -->
         <div class="article-items">
-          <article-item></article-item>
+          <article-item
+            :article="articleItem"
+            v-for="articleItem in latestArticleList"
+            :key="articleItem._id"
+          ></article-item>
         </div>
       </div>
     </div>
@@ -29,13 +33,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, onMounted } from 'vue'
 import ArticleItem from '@web/components/article-item/article-item.vue'
+import { useArticleStore } from '@web/stores/articleStore'
+import { useCategoryStore } from '@web/stores/categoryStore'
 export default defineComponent({
   name: 'Home',
   components: { ArticleItem },
   setup() {
-    return {}
+    const ArticleStore = useArticleStore()
+
+    const latestArticleList = computed(() => ArticleStore.articleList)
+
+    onMounted(() => {
+      ArticleStore.getLatestArticle()
+    })
+    return {
+      latestArticleList,
+    }
   },
 })
 </script>
@@ -84,6 +99,12 @@ export default defineComponent({
         .caption {
           font-size: 32px;
           padding: 12px;
+        }
+
+        .article-items {
+          display: flex;
+          flex-direction: column;
+          row-gap: 24px;
         }
       }
     }
