@@ -1,16 +1,14 @@
+import { ICategory } from './ICategory'
+
 export interface IArticle {
+  _id?: string
   title?: string
-  descriptation?: string
-  classification?: IClassification[]
+  description?: string
+  classification?: ICategory[]
   html?: string
   updatedAt?: string
 }
 
 export interface IArticles {
   articles: IArticle[]
-}
-
-export interface IClassification {
-  _id: string
-  name: string
 }
