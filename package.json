@@ -17,8 +17,6 @@
     "axios": "^0.24.0",
     "browserslist": "^4.19.1",
     "pinia": "^2.0.9",
-    "postcss": "^8.4.5",
-    "postcss-pxtorem": "^6.0.0",
     "vite-plugin-style-import": "^1.4.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12"
