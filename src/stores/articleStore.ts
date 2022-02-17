@@ -4,10 +4,12 @@ import { defineStore } from 'pinia'
 
 interface IState {
   articleList: IArticle[]
+  articleData: IArticle
 }
 export const useArticleStore = defineStore('article', {
   state: (): IState => ({
     articleList: [],
+    articleData: {},
   }),
 
   getters: {},
@@ -31,6 +33,20 @@ export const useArticleStore = defineStore('article', {
       } catch (error) {
         console.log(`Error: ${error}`)
       }
+    },
+
+    async getArticleById(id: string) {
+      try {
+        const result = <IArticles>await httpGet({ url: `/article/${id}` })
+        this.articleData = result.articles[0]
+      } catch (error) {
+        console.log(`Error Info: get article #${id} faild. \n Error: ${error}`)
+        throw error
+      }
+    },
+
+    recycleArticleData() {
+      this.articleData = {}
     },
   },
 })
