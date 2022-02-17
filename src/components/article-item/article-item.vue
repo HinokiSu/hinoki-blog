@@ -14,7 +14,7 @@
           <div class="description">{{ article?.description }}</div>
         </div>
         <div class="article-footer">
-          <router-link :to="{ name: 'home' }">
+          <router-link :to="{ name: 'article-detail', params: { id: article?._id } }">
             <div class="read-more">Read More</div>
           </router-link>
         </div>
