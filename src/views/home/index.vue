@@ -2,13 +2,13 @@
   <div class="home page-wrapper">
     <div class="individual-info">
       <div class="avatar">
-        <fe-image
+        <fe-img
           skeleton
-          width="13rem"
-          height="13rem"
+          width="180px"
+          height="180px"
           max-delay="1500"
           src="https://avatars.githubusercontent.com/u/93910087?v=4"
-        ></fe-image>
+        ></fe-img>
       </div>
       <div class="nickname">Hinoki</div>
       <div class="github-name">Hinoki_Su</div>
@@ -18,7 +18,9 @@
     </div>
     <div class="right-container">
       <div class="recently-content">
-        <div class="caption">Recently Article</div>
+        <div class="caption">
+          <h3>Recently Article</h3>
+        </div>
         <!-- 列举最近发布的3篇文章 -->
         <div class="article-items">
           <article-item
@@ -60,7 +62,7 @@ export default defineComponent({
   &.page-wrapper {
     display: grid;
     grid-template-columns: 2fr 8fr;
-    column-gap: 36px;
+    column-gap: 12px;
 
     .individual-info {
       margin-top: 48px;
@@ -76,7 +78,7 @@ export default defineComponent({
 
       .nickname {
         margin-top: 32px;
-        font-size: 40px;
+        font-size: 2rem;
         font-weight: 500;
       }
 
@@ -85,7 +87,7 @@ export default defineComponent({
       }
 
       .sns {
-        margin-top: 64px;
+        margin-top: 48px;
         .iconfont {
           cursor: pointer;
           font-size: 36px;
@@ -94,17 +96,18 @@ export default defineComponent({
     }
 
     .right-container {
-      padding: 0 24px;
+      padding: 12px 24px;
       .recently-content {
         .caption {
-          font-size: 32px;
-          padding: 12px;
+          padding-left: 20px;
+          padding-bottom: 12px;
+          color: var(--accents-5)
         }
 
         .article-items {
           display: flex;
           flex-direction: column;
-          row-gap: 24px;
+          row-gap: 12px;
         }
       }
     }
