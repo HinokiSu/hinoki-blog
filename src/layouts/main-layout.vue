@@ -1,16 +1,18 @@
 <template>
   <div class="main-layout">
-    <header>
-      <navigation-bar></navigation-bar>
-    </header>
-    <main>
-      <div class="main-wrapper">
-        <router-view></router-view>
-      </div>
-    </main>
-    <footer>
-      <footer-bar></footer-bar>
-    </footer>
+    <div class="main-layout-container">
+      <header>
+        <navigation-bar></navigation-bar>
+      </header>
+      <main>
+        <div class="main-wrapper">
+          <router-view></router-view>
+        </div>
+      </main>
+      <footer>
+        <footer-bar></footer-bar>
+      </footer>
+    </div>
   </div>
 </template>
 
@@ -29,30 +31,38 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .main-layout {
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  position: relative;
 
-  header {
+  .main-layout-container {
     width: 100%;
-    position: fixed;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
 
-  main {
-    width: 100%;
-    top: 80px;
-    position: absolute;
-    padding: 48px 120px;
-  }
+    header {
+      width: 100%;
+      position: fixed;
+      z-index: 100;
+    }
 
-  footer {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0px;
+    main {
+      margin-top: 72px;
+      width: 100%;
+
+      padding: 24px 64px;
+    }
+
+    footer {
+      position: relative;
+      margin-top: auto;
+      bottom: 0;
+      width: 100%;
+      z-index: 1;
+      padding: 8px;
+    }
   }
 }
 </style>
