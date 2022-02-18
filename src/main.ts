@@ -5,11 +5,12 @@ import router from '@web/routes'
 // pinia
 import { createPinia } from 'pinia'
 // fect-ui
-import Fect from '@fect-ui/vue'
-import '@fect-ui/vue/lib/main.css'
+import { FectUIRegister } from './utils/third-ui/fect-ui'
+// hightlight.js css
+import 'highlight.js/styles/github.css'
 
 const app = createApp(App)
 app.use(router)
 app.use(createPinia())
-app.use(Fect)
+FectUIRegister(app)
 app.mount('#app')
