@@ -8,11 +8,11 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.8.0
   '@typescript-eslint/parser': ^5.8.0
   '@vitejs/plugin-vue': ^2.0.0
-  autoprefixer: ^10.4.0
   axios: ^0.24.0
   browserslist: ^4.19.1
   eslint: ^8.5.0
   eslint-plugin-vue: ^8.2.0
+  highlight.js: ^11.4.0
   husky: ^7.0.4
   less: ^4.1.2
   pinia: ^2.0.9
@@ -28,9 +28,9 @@ dependencies:
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/15.0.0
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/15.0.0
   '@fect-ui/vue': registry.npmmirror.com/@fect-ui/vue/1.2.4_vue@3.2.27
-  autoprefixer: registry.npmmirror.com/autoprefixer/10.4.2
   axios: registry.npmmirror.com/axios/0.24.0
   browserslist: registry.npmmirror.com/browserslist/4.19.1
+  highlight.js: registry.npmmirror.com/highlight.js/11.4.0
   pinia: registry.npmmirror.com/pinia/2.0.9_typescript@4.5.4+vue@3.2.27
   vite-plugin-style-import: registry.npmmirror.com/vite-plugin-style-import/1.4.1_vite@2.7.13
   vue: registry.npmmirror.com/vue/3.2.27
@@ -1000,13 +1000,6 @@ packages:
       is-core-module: registry.npmmirror.com/is-core-module/2.8.1
       semver: registry.nlark.com/semver/7.3.5
       validate-npm-package-license: registry.nlark.com/validate-npm-package-license/3.0.4
-    dev: false
-
-  registry.nlark.com/normalize-range/0.1.2:
-    resolution: {integrity: sha1-LRDAa9/TEuqXd2laTShDlFa3WUI=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/normalize-range/download/normalize-range-0.1.2.tgz}
-    name: normalize-range
-    version: 0.1.2
-    engines: {node: '>=0.10.0'}
     dev: false
 
   registry.nlark.com/object-assign/4.1.1:
@@ -2452,23 +2445,6 @@ packages:
     version: 2.0.1
     dev: true
 
-  registry.npmmirror.com/autoprefixer/10.4.2:
-    resolution: {integrity: sha512-9fOPpHKuDW1w/0EKfRmVnxTDt8166MAnLI3mgZ1JCnhNtYWxcJ6Ud5CO/AVOZi/AvFa8DY9RTy3h3+tFBlrrdQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/autoprefixer/download/autoprefixer-10.4.2.tgz}
-    name: autoprefixer
-    version: 10.4.2
-    engines: {node: ^10 || ^12 || >=14}
-    hasBin: true
-    peerDependencies:
-      postcss: ^8.1.0
-    dependencies:
-      browserslist: registry.npmmirror.com/browserslist/4.19.1
-      caniuse-lite: registry.npmmirror.com/caniuse-lite/1.0.30001300
-      fraction.js: registry.npmmirror.com/fraction.js/4.1.2
-      normalize-range: registry.nlark.com/normalize-range/0.1.2
-      picocolors: registry.npmmirror.com/picocolors/1.0.0
-      postcss-value-parser: registry.npmmirror.com/postcss-value-parser/4.2.0
-    dev: false
-
   registry.npmmirror.com/axios/0.24.0:
     resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/axios/download/axios-0.24.0.tgz}
     name: axios
@@ -3100,12 +3076,6 @@ packages:
         optional: true
     dev: false
 
-  registry.npmmirror.com/fraction.js/4.1.2:
-    resolution: {integrity: sha512-o2RiJQ6DZaR/5+Si0qJUIy637QMRudSi9kU/FFzx9EZazrIdnBgpU+3sEWCxAVhH2RtxW2Oz+T4p2o8uOPVcgA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/fraction.js/download/fraction.js-4.1.2.tgz}
-    name: fraction.js
-    version: 4.1.2
-    dev: false
-
   registry.npmmirror.com/fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/fsevents/-/fsevents-2.3.2.tgz}
     name: fsevents
@@ -3194,6 +3164,13 @@ packages:
     resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graceful-fs/-/graceful-fs-4.2.9.tgz}
     name: graceful-fs
     version: 4.2.9
+
+  registry.npmmirror.com/highlight.js/11.4.0:
+    resolution: {integrity: sha512-nawlpCBCSASs7EdvZOYOYVkJpGmAOKMYZgZtUqSRqodZE0GRVcFKwo1RcpeOemqh9hyttTdd5wDBwHkuSyUfnA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/highlight.js/-/highlight.js-11.4.0.tgz}
+    name: highlight.js
+    version: 11.4.0
+    engines: {node: '>=12.0.0'}
+    dev: false
 
   registry.npmmirror.com/hosted-git-info/2.8.9:
     resolution: {integrity: sha1-3/wL+aIcAiCQkPKqaUKeFBTa8/k=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/hosted-git-info/download/hosted-git-info-2.8.9.tgz}
@@ -3518,12 +3495,6 @@ packages:
       typescript: registry.npmmirror.com/typescript/4.5.4
       vue: registry.npmmirror.com/vue/3.2.27
       vue-demi: registry.npmmirror.com/vue-demi/0.12.1_vue@3.2.27
-    dev: false
-
-  registry.npmmirror.com/postcss-value-parser/4.2.0:
-    resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/postcss-value-parser/download/postcss-value-parser-4.2.0.tgz}
-    name: postcss-value-parser
-    version: 4.2.0
     dev: false
 
   registry.npmmirror.com/postcss/8.4.5:
