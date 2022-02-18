@@ -105,3 +105,6 @@ dist
 
 # husky
 .husky
+
+# vscode
+.vscode
