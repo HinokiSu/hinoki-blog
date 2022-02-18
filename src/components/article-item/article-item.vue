@@ -6,7 +6,11 @@
         <div class="month">{{ publishTime.month }}</div>
       </div>
       <div class="article-body">
-        <div class="article-header">{{ article?.title }}</div>
+        <div class="article-header">
+          <h5>
+            {{ article?.title }}
+          </h5>
+        </div>
         <div class="article-main">
           <div class="category-tabs">
             <fe-tag :text="tag.name" v-for="tag in article?.classification" :key="tag._id" type="success" use-invert />
@@ -77,11 +81,11 @@ export default defineComponent({
       font-weight: 500;
 
       .day {
-        font-size: 42px;
+        font-size: 2.5rem;
         color: var(--success-default);
       }
       .month {
-        font-size: 24px;
+        font-size: 1.5rem;
         color: var(--highlight-pink);
       }
     }
@@ -89,12 +93,10 @@ export default defineComponent({
     .article-body {
       display: flex;
       flex-direction: column;
-      row-gap: 12px;
+      row-gap: 4px;
       padding-right: 8px;
 
       .article-header {
-        font-size: 36px;
-        font-weight: 500;
       }
 
       .article-main {
@@ -111,7 +113,7 @@ export default defineComponent({
         align-self: flex-end;
 
         .read-more {
-          padding: 12px 16px;
+          padding: 8px 12px;
           background-color: var(--success-default);
           color: var(--accents-1);
           font-size: 16px;

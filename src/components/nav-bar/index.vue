@@ -17,8 +17,8 @@
         <router-link :to="{ name: '' }">About</router-link>
       </div>
     </div>
-    <div class="language">
-      <p>EN&searhk;</p>
+    <div class="change-theme">
+      <p>Dark</p>
     </div>
   </div>
 </template>
@@ -44,13 +44,13 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .nav-wrapper {
-  height: 80px;
+  height: 72px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 9fr 0.5fr;
   align-items: center;
-  background-color: #fff;
-  box-shadow: 0 0 30px #e7e6e6;
+  background-color: var(--primary-background);
+  box-shadow: 0 0 36px var(--accents-2);
 
   @media (max-width: 968px) {
     display: flex;
@@ -82,9 +82,9 @@ export default defineComponent({
 
     .nav-link a {
       padding: 10px;
-      color: #222;
-      font-size: 24px;
-      font-weight: normal;
+      color: var(--accents-8);
+      font-size: 1.3rem;
+      font-weight: 400;
     }
 
     .delimiter {
@@ -98,7 +98,7 @@ export default defineComponent({
     }
   }
 
-  .language {
+  .change-theme {
     margin-right: 20px;
     cursor: pointer;
     p {
