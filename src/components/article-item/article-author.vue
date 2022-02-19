@@ -1,13 +1,13 @@
 <template>
   <div class="article-author">
-    <div class="author-avatar" :style="'width:' + avatarSize.width">
+    <div class="author-avatar" :style="styles">
       <fe-img
         class="avatar-img"
         src="https://avatars.githubusercontent.com/u/93910087?v=4"
         :width="avatarSize.width"
         :height="avatarSize.height"
         skeleton
-        max-delay="1000"
+        max-delay="600"
       ></fe-img>
     </div>
     <div class="author-info">
@@ -36,13 +36,16 @@ export default defineComponent({
       width: '',
       height: '',
     })
+    const styles = ref('')
 
     watchEffect(() => {
       avatarSize.value.width = props.width
       avatarSize.value.height = props.height
+      styles.value = `width: ${avatarSize.value.width};height: ${avatarSize.value.height}`
     })
     return {
       avatarSize,
+      styles,
     }
   },
 })
