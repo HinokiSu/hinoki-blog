@@ -6,7 +6,7 @@
           skeleton
           width="180px"
           height="180px"
-          max-delay="1500"
+          max-delay="1200"
           src="https://avatars.githubusercontent.com/u/93910087?v=4"
         ></fe-img>
       </div>

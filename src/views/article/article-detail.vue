@@ -11,7 +11,7 @@
           </div>
           <div class="publish-time">
             <span>⌛</span>
-            <span class="time">{{ article.updatedAt }}</span>
+            <span class="time">{{ publishTime }}</span>
           </div>
         </div>
         <separate-line></separate-line>
@@ -50,6 +50,7 @@ export default defineComponent({
     const ArticleStore = useArticleStore()
     const articleId = computed(() => route.params?.id)
     const article = ref<IArticle>({})
+    const publishTime = computed(() => article.value.updatedAt?.split(' ')[0])
 
     const fetchData = async (id: string) => {
       await ArticleStore.getArticleById(id)
@@ -75,6 +76,7 @@ export default defineComponent({
     })
     return {
       article,
+      publishTime,
     }
   },
 })
@@ -92,16 +94,14 @@ export default defineComponent({
 
   & .article-basic-info {
     & .article-header {
-      justify-content: center;
-      align-items: flex-end;
       width: 100%;
       display: grid;
       grid-template-columns: 1fr 4fr 1fr;
       column-gap: 12px;
+      align-items: flex-end;
 
       .author {
         margin-left: 16px;
-        justify-items: flex-start;
       }
 
       .title {
