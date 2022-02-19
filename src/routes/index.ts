@@ -12,9 +12,13 @@ const routes = <RouteRecordRaw[]>[
         name: 'home',
         component: () => import('@web/views/home/index.vue'),
       },
-      ...ArticleRoutes
+      ...ArticleRoutes,
 
-      
+      {
+        path: 'about',
+        name: 'about',
+        component: () => import('@web/views/about/about.vue'),
+      },
     ],
   },
 ]
