@@ -12,7 +12,9 @@ export const useArticleStore = defineStore('article', {
     articleData: {},
   }),
 
-  getters: {},
+  getters: {
+    artilceCount: (state) => state.articleList.length,
+  },
 
   actions: {
     async getAllArticle() {
