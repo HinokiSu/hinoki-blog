@@ -1,7 +1,9 @@
 <template>
   <div class="nav-wrapper">
     <div class="logo">
-      <img src="@web/assets/logo.png" alt="" />
+      <router-link :to="{ name: 'home' }">
+        <img src="@web/assets/logo.png" alt="" />
+      </router-link>
     </div>
     <div class="nav-container">
       <div class="nav-link">
@@ -9,12 +11,12 @@
       </div>
       <div class="delimiter"></div>
       <div class="nav-link">
-        <router-link :to="{ name: '' }">Article</router-link>
+        <router-link :to="{ name: 'articles' }">Article</router-link>
       </div>
 
       <div class="delimiter"></div>
       <div class="nav-link">
-        <router-link :to="{ name: '' }">About</router-link>
+        <router-link :to="{ name: 'about' }">About</router-link>
       </div>
     </div>
     <div class="change-theme">
