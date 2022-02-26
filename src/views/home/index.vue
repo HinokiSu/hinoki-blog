@@ -10,12 +10,15 @@
           src="https://avatars.githubusercontent.com/u/93910087?v=4"
         ></fe-img>
       </div>
-      <div class="nickname">Hinoki</div>
-      <div class="github-name">Hinoki_Su</div>
+      <div class="name-box">
+        <div class="nickname">Hinoki</div>
+        <div class="github-name">Hinoki_Su</div>
+      </div>
       <div class="sns">
         <span class="iconfont sns-GitHub"></span>
       </div>
     </div>
+    <separate-line class="line" />
     <div class="right-container">
       <div class="recently-content">
         <div class="caption">
@@ -38,10 +41,10 @@
 import { computed, defineComponent, onMounted } from 'vue'
 import ArticleItem from '@web/components/article-item/article-item.vue'
 import { useArticleStore } from '@web/stores/articleStore'
-import { useCategoryStore } from '@web/stores/categoryStore'
+import SeparateLine from '@web/components/separator/separate-line.vue'
 export default defineComponent({
   name: 'Home',
-  components: { ArticleItem },
+  components: { ArticleItem, SeparateLine },
   setup() {
     const ArticleStore = useArticleStore()
 
@@ -63,6 +66,7 @@ export default defineComponent({
     display: grid;
     grid-template-columns: 2fr 8fr;
     column-gap: 12px;
+    min-width: 100%;
 
     .individual-info {
       margin-top: 48px;
@@ -76,14 +80,21 @@ export default defineComponent({
         border-radius: 50%;
       }
 
-      .nickname {
+      .name-box {
         margin-top: 32px;
-        font-size: 2rem;
-        font-weight: 500;
-      }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-      .github-name {
-        font-size: 16px;
+        .nickname {
+          font-size: 2rem;
+          font-weight: 500;
+        }
+
+        .github-name {
+          font-size: 16px;
+        }
       }
 
       .sns {
@@ -95,19 +106,45 @@ export default defineComponent({
       }
     }
 
+    .line {
+      display: none;
+    }
+
     .right-container {
       padding: 12px 24px;
       .recently-content {
         .caption {
           padding-left: 20px;
           padding-bottom: 12px;
-          color: var(--accents-5)
+          color: var(--accents-5);
         }
 
         .article-items {
           display: flex;
           flex-direction: column;
           row-gap: 12px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 965px) {
+      & {
+        grid-template-columns: unset;
+        grid-template-rows: 1fr 48px auto;
+
+        & .individual-info {
+          flex-direction: row;
+
+          .name-box {
+            margin: 0 24px;
+          }
+          .sns {
+            margin: auto;
+          }
+        }
+
+        .line {
+          display: flex;
         }
       }
     }
