@@ -43,13 +43,16 @@ export default defineComponent({
     .header-title {
       font-size: 2rem;
       font-weight: 500;
+      color: var(--accents-5);
     }
   }
 
   & .page-main {
+    min-width: 100%;
     display: flex;
     flex-direction: column;
-    row-gap: 12px;
+    row-gap: 24px;
+    margin-top: 24px;
   }
 }
 </style>

@@ -4,8 +4,8 @@
       <div class="avatar">
         <fe-img
           skeleton
-          width="180px"
-          height="180px"
+          width="160px"
+          height="160px"
           max-delay="1200"
           src="https://avatars.githubusercontent.com/u/93910087?v=4"
         ></fe-img>
@@ -15,7 +15,9 @@
         <div class="github-name">Hinoki_Su</div>
       </div>
       <div class="sns">
-        <span class="iconfont sns-GitHub"></span>
+        <a href="https://github.com/HinokiSu">
+          <span class="iconfont sns-GitHub"></span>
+        </a>
       </div>
     </div>
     <separate-line class="line" />
@@ -63,13 +65,12 @@ export default defineComponent({
 <style lang="less" scoped>
 .home {
   &.page-wrapper {
-    display: grid;
-    grid-template-columns: 2fr 8fr;
-    column-gap: 12px;
+    display: flex;
+    column-gap: 24px;
     min-width: 100%;
 
     .individual-info {
-      margin-top: 48px;
+      padding-top: 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -78,6 +79,7 @@ export default defineComponent({
         object-fit: cover;
         overflow: hidden;
         border-radius: 50%;
+        margin: -4px;
       }
 
       .name-box {
@@ -91,17 +93,15 @@ export default defineComponent({
           font-size: 2rem;
           font-weight: 500;
         }
-
         .github-name {
           font-size: 16px;
         }
       }
-
       .sns {
         margin-top: 48px;
         .iconfont {
           cursor: pointer;
-          font-size: 36px;
+          font-size: 2rem;
         }
       }
     }
@@ -111,29 +111,29 @@ export default defineComponent({
     }
 
     .right-container {
+      width: 100%;
       padding: 12px 24px;
       .recently-content {
         .caption {
           padding-left: 20px;
-          padding-bottom: 12px;
+          padding-top: 12px;
           color: var(--accents-5);
         }
 
         .article-items {
           display: flex;
           flex-direction: column;
-          row-gap: 12px;
+          row-gap: 32px;
         }
       }
     }
 
     @media screen and (max-width: 965px) {
       & {
-        grid-template-columns: unset;
-        grid-template-rows: 1fr 48px auto;
-
+        flex-direction: column;
         & .individual-info {
           flex-direction: row;
+          margin-left: 12px;
 
           .name-box {
             margin: 0 24px;
@@ -145,6 +145,10 @@ export default defineComponent({
 
         .line {
           display: flex;
+        }
+
+        .right-container {
+          padding: 0;
         }
       }
     }
