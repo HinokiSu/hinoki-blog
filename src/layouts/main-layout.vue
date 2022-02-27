@@ -1,28 +1,26 @@
 <template>
   <div class="main-layout">
-    <div class="main-layout-container">
-      <header>
-        <navigation-bar></navigation-bar>
-      </header>
-      <main>
-        <div class="main-wrapper">
-          <router-view></router-view>
-        </div>
-      </main>
-      <footer>
-        <footer-bar></footer-bar>
-      </footer>
-    </div>
+    <header>
+      <header-bar></header-bar>
+    </header>
+    <main>
+      <div class="main-wrapper">
+        <router-view></router-view>
+      </div>
+    </main>
+    <footer>
+      <footer-bar></footer-bar>
+    </footer>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import NavigationBar from '@web/components/nav-bar/index.vue'
 import FooterBar from '@web/components/footer-bar/index.vue'
+import HeaderBar from '@web/components/headr-bar/header-bar.vue'
 export default defineComponent({
   name: 'MainLayout',
-  components: { NavigationBar, FooterBar },
+  components: { FooterBar, HeaderBar },
   setup() {
     return {}
   },
@@ -34,35 +32,32 @@ export default defineComponent({
   width: 100vw;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  .main-layout-container {
+  header {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    position: fixed;
+    z-index: 100;
+  }
+
+  main {
+    max-width: 900px;
+    width: 100%;
+    margin-top: 72px;
+    .main-wrapper {
+      margin: 0 24px;
+      padding-top: 24px;
+    }
+  }
+
+  footer {
     position: relative;
-
-    header {
-      width: 100%;
-      position: fixed;
-      z-index: 100;
-    }
-
-    main {
-      margin-top: 72px;
-      width: 100%;
-
-      padding: 24px 64px;
-    }
-
-    footer {
-      position: relative;
-      margin-top: auto;
-      bottom: 0;
-      width: 100%;
-      z-index: 1;
-      padding: 8px;
-    }
+    margin-top: auto;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    padding: 8px;
   }
 }
 </style>
