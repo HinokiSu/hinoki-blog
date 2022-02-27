@@ -7,7 +7,7 @@
     <div class="page-main">
       <p>Hey! This here 👋</p>
       <p>I'm Hinoki 🌠</p>
-      <p>This ia a personal development record Website.</p>
+      <p>This is a personal development record Website.</p>
       <p>Enjoy!</p>
     </div>
   </div>
