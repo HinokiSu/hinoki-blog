@@ -3,28 +3,25 @@
     <div class="article-main">
       <div class="article-basic-info">
         <div class="article-header">
-          <div class="author">
-            <article-author></article-author>
+          <article-author class="author"></article-author>
+          <div class="tags">
+            <fe-tag :text="tag.name" v-for="tag in article?.classification" :key="tag._id" type="success" use-invert />
           </div>
+        </div>
+        <separate-line></separate-line>
+        <div class="article-main-content">
           <div class="title">
             {{ article.title }}
           </div>
           <div class="publish-time">
-            <span>⌛</span>
-            <span class="time">{{ publishTime }}</span>
+            {{ publishTime }}
           </div>
-        </div>
-        <separate-line></separate-line>
-        <div class="tags">
-          <fe-tag :text="tag.name" v-for="tag in article?.classification" :key="tag._id" type="success" use-invert />
-        </div>
-      </div>
-      <div class="article-main-content">
-        <div class="description">
-          {{ article.description }}
-        </div>
-        <div class="content">
-          <div v-html="article.html"></div>
+          <div class="description">
+            {{ article.description }}
+          </div>
+          <div class="content">
+            <div v-html="article.html"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -50,7 +47,7 @@ export default defineComponent({
     const ArticleStore = useArticleStore()
     const articleId = computed(() => route.params?.id)
     const article = ref<IArticle>({})
-    const publishTime = computed(() => article.value.updatedAt?.split(' ')[0])
+    const publishTime = computed(() => article.value.updatedAt?.split(' ')[0].replace(/-/g, '/'))
 
     const fetchData = async (id: string) => {
       await ArticleStore.getArticleById(id)
@@ -86,7 +83,7 @@ export default defineComponent({
 .article-detail {
   display: flex;
   flex-direction: column;
-  padding: 48px 0;
+  padding: 24px 0;
   & .article-main {
     display: flex;
     flex-direction: column;
@@ -95,49 +92,31 @@ export default defineComponent({
   & .article-basic-info {
     & .article-header {
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 4fr 1fr;
-      column-gap: 12px;
+      display: flex;
+      justify-content: space-between;
       align-items: flex-end;
-
       .author {
         margin-left: 16px;
       }
 
-      .title {
-        justify-self: center;
-        font-size: 2rem;
+      & .tags {
+        display: flex;
+        justify-content: flex-end;
+        column-gap: 6px;
       }
-
-      .publish-time {
-        justify-self: flex-end;
-        padding-right: 16px;
-        & :nth-child(1) {
-          font-size: 1rem;
-          padding: 0 4px;
-        }
-        .time {
-          color: var(--accents-3);
-        }
-      }
-    }
-
-    & .tags {
-      display: flex;
-      justify-content: flex-end;
-      column-gap: 4px;
-      row-gap: 8px;
-
-      padding-bottom: 12px;
-      padding-right: 16px;
     }
   }
 
   & .article-main-content {
-    max-width: 60%;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
+    margin: 0 32px;
+    .title {
+      font-size: 2rem;
+    }
+
+    .publish-time {
+      padding-top: 8px;
+      color: var(--accents-3);
+    }
 
     .description {
       margin: 10px 0;
