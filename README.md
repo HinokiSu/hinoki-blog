@@ -27,11 +27,16 @@ $ pnpm install
 
 ## Running
 
-- run web
+- run web  
 
 ```bash
 $ pnpm run dev
 ```
+
+## Todo  
+
+- [ ] ssr  
+
 
 ## License
 
