@@ -17,8 +17,9 @@
     "browserslist": "^4.19.1",
     "highlight.js": "^11.4.0",
     "pinia": "^2.0.9",
+    "rollup": "^2.68.0",
     "vite-plugin-style-import": "^1.4.1",
-    "vue": "^3.2.25",
+    "vue": "^3.2.31",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {

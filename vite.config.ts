@@ -8,6 +8,7 @@ import ViteCompression from 'vite-plugin-compression'
 export default defineConfig({
   plugins: [
     vue(),
+    // 开启压缩
     ViteCompression({
       verbose: true,
       disable: false,
@@ -36,12 +37,17 @@ export default defineConfig({
       },
     },
   },
+
   build: {
     terserOptions: {
+      // 移除console.log
       compress: {
-        // move console.log
         drop_console: true,
         drop_debugger: true,
+      },
+      output: {
+        // 去除注释
+        comments: true,
       },
     },
     assetsDir: 'static/img/',
