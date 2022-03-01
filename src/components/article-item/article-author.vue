@@ -12,7 +12,7 @@
     </div>
     <div class="author-info">
       <span class="author-name">Hinoki</span>
-      <span class="author-identity"> fontEnd developer </span>
+      <span class="author-identity"> frontEnd developer </span>
     </div>
   </div>
 </template>

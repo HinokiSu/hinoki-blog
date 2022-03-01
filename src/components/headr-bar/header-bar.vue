@@ -48,10 +48,12 @@ export default defineComponent({
   box-shadow: 0 0 36px var(--accents-2);
 
   .logo {
+    width: 100px;
     padding-left: 30px;
     cursor: pointer;
     img {
-      width: 70px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
   }
