@@ -45,6 +45,7 @@ export default defineComponent({
     max-width: 900px;
     width: 100%;
     margin-top: 72px;
+    margin-bottom: 32px;
     .main-wrapper {
       margin: 0 24px;
       padding-top: 24px;
