@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 import separateLine from '@web/components/separator/separate-line.vue'
 import articleItem from '@web/components/article-item/article-item.vue'
 import { useArticleStore } from '@web/stores/articleStore'
@@ -23,13 +23,19 @@ export default defineComponent({
     const ArticleStore = useArticleStore()
     const articles = ref<IArticle[]>([])
 
-    watchEffect(() => {
-      if (ArticleStore.artilceCount === 0) {
-        ArticleStore.getAllArticle()
-        console.log('when length is 0 , Call this')
-      }
-      articles.value = ArticleStore.articleList
+    onMounted(() => {
+      ArticleStore.getAllArticle()
     })
+
+    watch(
+      () => ArticleStore.artilceCount,
+      () => {
+        if (ArticleStore.artilceCount === 0) {
+          ArticleStore.getAllArticle()
+        }
+        articles.value = ArticleStore.articleList
+      }
+    )
     return {
       articles,
     }
