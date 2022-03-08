@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = '/api/server'
+axios.defaults.baseURL = import.meta.env.VITE_API_URL as string
 axios.defaults.timeout = 10000
 // Request header information is set for post request
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'

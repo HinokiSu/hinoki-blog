@@ -28,11 +28,7 @@
         </div>
         <!-- 列举最近发布的3篇文章 -->
         <div class="article-items">
-          <article-item
-            :article="articleItem"
-            v-for="articleItem in latestArticleList"
-            :key="articleItem._id"
-          ></article-item>
+          <article-item :article="articleItem" v-for="articleItem in articleList" :key="articleItem._id"></article-item>
         </div>
       </div>
     </div>
@@ -40,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from 'vue'
+import { computed, defineComponent, onBeforeUnmount, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue'
 import ArticleItem from '@web/components/article-item/article-item.vue'
 import { useArticleStore } from '@web/stores/articleStore'
 import SeparateLine from '@web/components/separator/separate-line.vue'
@@ -50,13 +46,17 @@ export default defineComponent({
   setup() {
     const ArticleStore = useArticleStore()
 
-    const latestArticleList = computed(() => ArticleStore.articleList)
+    const articleList = computed(() => ArticleStore.latestArticleList)
 
-    onMounted(() => {
-      ArticleStore.getLatestArticle()
+    onMounted(async () => {
+      await ArticleStore.getLatestArticle()
+    })
+
+    onBeforeUnmount(() => {
+      ArticleStore.recycleArticleData()
     })
     return {
-      latestArticleList,
+      articleList,
     }
   },
 })

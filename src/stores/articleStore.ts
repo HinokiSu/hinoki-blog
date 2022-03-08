@@ -5,11 +5,13 @@ import { defineStore } from 'pinia'
 interface IState {
   articleList: IArticle[]
   articleData: IArticle
+  latestArticleList: IArticle[]
 }
 export const useArticleStore = defineStore('article', {
   state: (): IState => ({
     articleList: [],
     articleData: {},
+    latestArticleList: [],
   }),
 
   getters: {
@@ -21,7 +23,6 @@ export const useArticleStore = defineStore('article', {
       try {
         const result = <IArticles>await httpGet({ url: `/article/all` })
         this.articleList = result.articles
-        console.log(result)
       } catch (error) {
         console.log(`Error: ${error}`)
       }
@@ -31,7 +32,7 @@ export const useArticleStore = defineStore('article', {
     async getLatestArticle() {
       try {
         const result = <IArticles>await httpGet({ url: '/article/latest' })
-        this.articleList = result.articles
+        this.latestArticleList = result.articles
       } catch (error) {
         console.log(`Error: ${error}`)
       }

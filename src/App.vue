@@ -1,5 +1,14 @@
 <template>
-  <router-view></router-view>
+  <!-- <router-view v-slot="Component">
+    <transition name="fade" mode="out-in">
+      <component :is="Component"></component>
+    </transition>
+  </router-view> -->
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script lang="ts">
@@ -14,4 +23,14 @@ export default defineComponent({
 
 <style>
 @import url('@web/assets/css/global.css');
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

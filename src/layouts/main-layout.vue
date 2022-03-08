@@ -5,7 +5,11 @@
     </header>
     <main>
       <div class="main-wrapper">
-        <router-view></router-view>
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in" :duration="{ enter: 250, leave: 150 }">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </div>
     </main>
     <footer>
