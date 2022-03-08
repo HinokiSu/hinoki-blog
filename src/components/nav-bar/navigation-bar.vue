@@ -68,18 +68,18 @@ export default defineComponent({
       }
     }
   }
-
   .nav-link {
     display: flex;
+    a {
+      padding: 10px;
+      color: var(--accents-7);
+      font-size: 1.2rem;
+      font-weight: 400;
+      &:hover{
+        color: var(--primary-foreground);
+      }
+    }
   }
-
-  .nav-link a {
-    padding: 10px;
-    color: var(--accents-8);
-    font-size: 1.3rem;
-    font-weight: 400;
-  }
-
   .delimiter {
     height: 40px;
     width: 2px;

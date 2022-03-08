@@ -6,7 +6,7 @@
       <div class="burger-line-3"></div>
     </div>
     <fe-drawer placement="left" v-model="visible">
-      <navigation-bar :direction="'row'"></navigation-bar>
+      <navigation-bar :direction="'row'" style="margin-top: 32px;"></navigation-bar>
     </fe-drawer>
   </div>
 </template>
