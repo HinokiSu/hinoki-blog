@@ -11,31 +11,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted } from 'vue'
 import separateLine from '@web/components/separator/separate-line.vue'
 import articleItem from '@web/components/article-item/article-item.vue'
 import { useArticleStore } from '@web/stores/articleStore'
-import { IArticle } from '@web/interfaces/IArticle'
 export default defineComponent({
   components: { separateLine, articleItem },
   name: 'Articles',
   setup() {
     const ArticleStore = useArticleStore()
-    const articles = ref<IArticle[]>([])
+    const articles = computed(() => ArticleStore.articleList)
 
-    onMounted(() => {
-      ArticleStore.getAllArticle()
+    onMounted(async () => {
+      await ArticleStore.getAllArticle()
     })
 
-    watch(
-      () => ArticleStore.artilceCount,
-      () => {
-        if (ArticleStore.artilceCount === 0) {
-          ArticleStore.getAllArticle()
-        }
-        articles.value = ArticleStore.articleList
-      }
-    )
     return {
       articles,
     }
