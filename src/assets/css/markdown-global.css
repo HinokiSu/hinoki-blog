@@ -1,0 +1,56 @@
+h1 {
+  font-size: 1.9rem !important;
+}
+
+h2 {
+  font-size: 1.7rem !important;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: 1.5rem !important;
+}
+
+h4 {
+  font-size: 1.3rem !important;
+}
+
+h5 {
+  font-size: 1rem !important;
+}
+
+h6 {
+  font-size: 0.8rem !important;
+}
+
+p {
+  margin: 0.5rem 0 !important;
+}
+
+blockquote {
+  padding: 10px 20px !important;
+  margin: 0 0 20px !important;
+  border-left: 5px solid var(--fect-border) !important;
+  border-right: unset !important;
+  border-top: unset !important;
+  border-bottom: unset !important;
+  border-radius: unset !important;
+  width: 100%;
+  overflow: auto;
+}
+
+table {
+  display: block;
+  overflow: auto;
+  /* -webkit */
+}
+table::-webkit-scrollbar {
+  width: 0;
+}
+
+ul li::before {
+  content: '•' !important;
+  font-size: 1.2rem !important;
+  color: var(--accents-7) !important;
+}
+
