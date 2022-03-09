@@ -1,0 +1,40 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:16
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "f4:8f:70:b2:8b:48:24:40:09:7f:ca:4c:5e:ea:87:ba"
+      - checkout
+      - restore_cache:
+          keys: 
+            - dependencies_circle_node
+      - run:
+          name: Install Pnpm
+          command: sudo curl -f https://get.pnpm.io/v6.16.js | sudo node - add --global pnpm
+      - run:
+          name: Install
+          command: pnpm install
+      - save_cache:
+          key: dependencies_circle_node
+          paths:
+            - node_modules
+      - run:
+          name: Build
+          command: pnpm run build
+      - run:
+          name: AuthSet
+          command: chmod +x scripts/deploy.sh
+      - run:
+          name: Deploy
+          command: ./scripts/deploy.sh
+workflows:
+  basic-workflow:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: 
+                - main
