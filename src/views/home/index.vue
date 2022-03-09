@@ -17,7 +17,7 @@
       </div>
       <div class="sns">
         <a href="https://github.com/HinokiSu">
-          <span class="iconfont sns-GitHub"></span>
+          <github size="24" />
         </a>
       </div>
     </div>
@@ -41,9 +41,11 @@ import { computed, defineComponent, onBeforeUnmount, onMounted, onUnmounted, ref
 import ArticleItem from '@web/components/article-item/article-item.vue'
 import { useArticleStore } from '@web/stores/articleStore'
 import SeparateLine from '@web/components/separator/separate-line.vue'
+import { Github } from '@fect-ui/vue-icons'
+
 export default defineComponent({
   name: 'Home',
-  components: { ArticleItem, SeparateLine },
+  components: { ArticleItem, SeparateLine, Github },
   setup() {
     const ArticleStore = useArticleStore()
 
@@ -99,11 +101,8 @@ export default defineComponent({
         }
       }
       .sns {
-        margin-top: 48px;
-        .iconfont {
-          cursor: pointer;
-          font-size: 2rem;
-        }
+        margin-top: 24px;
+        cursor: pointer;
       }
     }
 
@@ -138,9 +137,6 @@ export default defineComponent({
 
           .name-box {
             margin: 0 24px;
-          }
-          .sns {
-            margin: auto;
           }
         }
 
