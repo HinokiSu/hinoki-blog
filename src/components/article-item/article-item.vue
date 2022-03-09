@@ -87,6 +87,16 @@ export default defineComponent({
         font-size: 1.5rem;
         color: var(--highlight-pink);
       }
+
+      @media screen and (max-width: 500px) {
+        .day {
+          font-size: 2em;
+        }
+
+        .month {
+          font-size: 1.2em;
+        }
+      }
     }
 
     .article-body {
@@ -100,6 +110,14 @@ export default defineComponent({
         font-weight: 500;
         color: var(--accents-6);
         margin-bottom: 4px;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+        display: -webkit-box;
       }
 
       .article-main {

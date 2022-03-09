@@ -13,9 +13,13 @@ export const timeHasMonthDay = (raw: string): IFormatedTimeHasMonthDay => {
     month: '',
     day: '',
   }
-  formatedTime.month = raw.split(' ')[0].split('-')[1]
+  const month = raw.split(' ')[0].split('-')[1]
   formatedTime.day = raw.split(' ')[0].split('-')[2]
+  const tMonth = month.split('')
+  if (tMonth[0] === '0') {
+    formatedTime.month = tMonth[1]
+  } else {
+    formatedTime.month = month
+  }
   return formatedTime
 }
-
-

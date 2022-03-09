@@ -130,6 +130,7 @@ export default defineComponent({
 
   & .article-main-content {
     margin: 0 32px;
+    word-break: break-all;
     .title {
       font-size: 2rem;
     }
