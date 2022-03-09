@@ -8,6 +8,7 @@
           height="160px"
           max-delay="1200"
           src="https://avatars.githubusercontent.com/u/93910087?v=4"
+          alt="github avatar"
         ></fe-img>
       </div>
       <div class="name-box">

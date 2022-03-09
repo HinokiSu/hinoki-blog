@@ -8,6 +8,7 @@
         :height="avatarSize.height"
         skeleton
         max-delay="600"
+        alt="github avatar"
       ></fe-img>
     </div>
     <div class="author-info">
