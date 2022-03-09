@@ -1,5 +1,5 @@
 <template>
-  <div class="hinoki-about">
+  <div class="hinoki-blog about">
     <div class="page-header">
       <span>About</span>
     </div>
@@ -27,21 +27,26 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.hinoki-about {
-  & .page-header {
-    font-size: 2rem;
-    font-weight: 500;
-    color: var(--accents-5);
-  }
+.hinoki-blog {
+  &.about {
+    & .page-header {
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--accents-5);
+    }
 
-  & .page-main {
-    display: flex;
-    flex-direction: column;
-    row-gap: 2px;
+    & .page-main {
+      display: flex;
+      flex-direction: column;
+      row-gap: 2px;
 
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: 2px;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      & > p {
+        margin: 0.3rem 0;
+      }
+    }
   }
 }
 </style>

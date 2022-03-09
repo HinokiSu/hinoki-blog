@@ -84,6 +84,27 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   padding: 24px 0;
+
+  // strip
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accents-1);
+  }
+
+  // track
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px var(--accents-2);
+    border-radius: 12px;
+    background-color: var(--accents-1);
+  }
+
+  // slider
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: var(--accents-3);
+  }
+
   & .article-main {
     display: flex;
     flex-direction: column;

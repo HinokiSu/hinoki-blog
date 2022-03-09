@@ -23,7 +23,7 @@ export default defineComponent({
 
 <style>
 @import url('@web/assets/css/global.css');
-
+@import url('@web/assets/css/markdown-global.css');
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.4s ease;
