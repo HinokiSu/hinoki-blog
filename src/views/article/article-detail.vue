@@ -143,5 +143,13 @@ export default defineComponent({
       margin: 10px 0;
     }
   }
+
+  @media screen and (max-width: 500px) {
+    & {
+      & .article-main-content {
+        margin: 0;
+      }
+    }
+  }
 }
 </style>
