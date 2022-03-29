@@ -1,25 +1,12 @@
-interface IFormatedTimeHasMonthDay {
-  month: string
-  day: string
-}
 //
 /**
- * @description '2022-2-1 12:00' --format-> {month: '2',day: '1'}
+ * @description '2022-2-1 12:00' --format-> '2022年2月1日'
  * @param raw raw date, example: '2022-2-1 12:00'
  * @returns An object that has month and day
  */
-export const timeHasMonthDay = (raw: string): IFormatedTimeHasMonthDay => {
-  const formatedTime = <IFormatedTimeHasMonthDay>{
-    month: '',
-    day: '',
-  }
-  const month = raw.split(' ')[0].split('-')[1]
-  formatedTime.day = raw.split(' ')[0].split('-')[2]
-  const tMonth = month.split('')
-  if (tMonth[0] === '0') {
-    formatedTime.month = tMonth[1]
-  } else {
-    formatedTime.month = month
-  }
+export const timeFormatToCNTime = (raw: string): string => {
+  let formatedTime = ''
+  const time = raw.split(' ')[0].split('-')
+  formatedTime = `${time[0]}年${time[1]}月${time[2]}日`
   return formatedTime
 }
