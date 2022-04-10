@@ -1,4 +1,4 @@
-import { IArticle, IArticles } from '@web/interfaces/IArticle'
+import { IArticle, IHttpArticles } from '@web/interfaces/IArticle'
 import { httpGet } from '@web/utils/axios'
 import { defineStore } from 'pinia'
 
@@ -21,7 +21,7 @@ export const useArticleStore = defineStore('article', {
   actions: {
     async getAllArticle() {
       try {
-        const result = <IArticles>await httpGet({ url: `/article/all` })
+        const result = <IHttpArticles>await httpGet({ url: `/article/all` })
         this.articleList = result.articles
       } catch (error) {
         console.log(`Error: ${error}`)
@@ -31,7 +31,7 @@ export const useArticleStore = defineStore('article', {
     // get the latest articles, the default limit returns 3 articles
     async getLatestArticle() {
       try {
-        const result = <IArticles>await httpGet({ url: '/article/latest' })
+        const result = <IHttpArticles>await httpGet({ url: '/article/latest' })
         this.latestArticleList = result.articles
       } catch (error) {
         console.log(`Error: ${error}`)
@@ -40,7 +40,7 @@ export const useArticleStore = defineStore('article', {
 
     async getArticleById(id: string) {
       try {
-        const result = <IArticles>await httpGet({ url: `/article/${id}` })
+        const result = <IHttpArticles>await httpGet({ url: `/article/${id}` })
         this.articleData = result.articles[0]
       } catch (error) {
         console.log(`Error Info: get article #${id} faild. \n Error: ${error}`)

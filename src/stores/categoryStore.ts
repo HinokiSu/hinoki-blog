@@ -18,7 +18,7 @@ export const useCategoryStore = defineStore('category', {
   actions: {
     async getCategories() {
       try {
-        const result = <ICategories>await httpGet({ url: `/server/category/all` })
+        const result = <ICategories>await httpGet({ url: `/category/all` })
         this.categoryList = result.categories
       } catch (error) {
         console.log(`Error: ${error}`)
@@ -27,7 +27,7 @@ export const useCategoryStore = defineStore('category', {
 
     async getCategoryById(id: string) {
       try {
-        const result = <ICategory>await httpGet({ url: `/server/category/${id}` })
+        const result = <ICategory>await httpGet({ url: `/category/${id}` })
         this.categoryData = result
       } catch (error) {
         console.log(`Error: ${error}`)
