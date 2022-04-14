@@ -48,6 +48,17 @@ export const useArticleStore = defineStore('article', {
       }
     },
 
+    // 模糊查询文章
+    async getArticleFuzzyByTitle(keyword: string) {
+      try {
+        const result = <IHttpArticles>await httpGet({ url: `/article/search/${keyword}` })
+        this.articleList = result.articles
+      } catch (error) {
+        console.log(`Error Info: get fuzzy article #${keyword} faild. \n Error: ${error}`)
+        throw error
+      }
+    },
+
     recycleArticleData() {
       this.articleData = {}
     },
