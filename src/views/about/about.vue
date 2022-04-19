@@ -1,24 +1,16 @@
 <template>
   <div class="hinoki-blog about">
-    <div class="page-header">
-      <span>About</span>
-    </div>
-    <separate-line></separate-line>
-    <div class="page-main">
-      <p>Hey! This here 👋</p>
-      <p>I'm Hinoki 🌠</p>
-      <p>This is a personal development record Website.</p>
-      <p>Enjoy!</p>
-    </div>
+    <content-layout header-title="关于">
+      <div class="about__introduction"></div>
+    </content-layout>
   </div>
 </template>
 
 <script lang="ts">
-import separateLine from '@web/components/separator/separate-line.vue'
 import { defineComponent } from 'vue'
-
+import contentLayout from '@web/layouts/content-layout.vue'
 export default defineComponent({
-  components: { separateLine },
+  components: { contentLayout },
   name: 'About',
   setup() {
     return {}
@@ -29,23 +21,7 @@ export default defineComponent({
 <style lang="less" scoped>
 .hinoki-blog {
   &.about {
-    & .page-header {
-      font-size: 2rem;
-      font-weight: 500;
-      color: var(--accents-5);
-    }
-
-    & .page-main {
-      display: flex;
-      flex-direction: column;
-      row-gap: 2px;
-
-      font-size: 1.2rem;
-      font-weight: 400;
-      letter-spacing: 2px;
-      & > p {
-        margin: 0.3rem 0;
-      }
+    .about__introduction {
     }
   }
 }
