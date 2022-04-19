@@ -1,5 +1,6 @@
 import { IComment, IHttpComment, IHttpCommentTotal, IReplyComment } from '@web/interfaces/IComment'
 import { IParentComment } from '@web/interfaces/IComment'
+import { markdownBaseParser } from '@web/plugins/md-it'
 import { httpGet, httpPost } from '@web/utils/axios'
 import { defineStore } from 'pinia'
 
@@ -70,6 +71,19 @@ export const useCommentStore = defineStore('comment', {
       } catch (error) {
         console.log(`Error: ${error}`)
       }
+    },
+
+    // 解析评论(父子级)的评论内容
+    getParsedMarkdownContent() {
+      // TODO: 待优化
+      this.commentList.map((item) => {
+        item.content = markdownBaseParser().render(item.content || '')
+        if (JSON.stringify(item.child_comments[0]) !== '{}') {
+          item.child_comments.map((cItem) => {
+            cItem.content = markdownBaseParser().render(cItem.content || '')
+          })
+        }
+      })
     },
   },
 })
