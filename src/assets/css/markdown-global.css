@@ -28,8 +28,8 @@ p {
 }
 
 blockquote {
-  padding: 10px 20px !important;
-  margin: 0 0 20px !important;
+  padding: 4px 16px !important;
+  margin: 0 0 8px !important;
   border-left: 5px solid var(--fect-border) !important;
   border-right: unset !important;
   border-top: unset !important;
