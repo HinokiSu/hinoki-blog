@@ -59,8 +59,20 @@ export const useArticleStore = defineStore('article', {
       }
     },
 
+    // 根据类别Id查询所有文章
+    async getArticlesByCateId(cateId: string) {
+      try {
+        const result = <IHttpArticles>await httpGet({ url: `/article/category/${cateId}` })
+        this.articleList = result.articles
+      } catch (error) {
+        console.log(`Error Info: get articles by cateId #${cateId} faild. \n Error: ${error}`)
+        throw error
+      }
+    },
+
     recycleArticleData() {
       this.articleData = {}
+      this.articleList.length = 0
     },
   },
 })
