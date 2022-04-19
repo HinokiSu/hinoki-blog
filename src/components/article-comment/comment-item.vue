@@ -8,7 +8,7 @@
         >
       </template>
       <template #author>
-        <span class="visitor__nickname parent-comment">{{ commentItem?.visitor.nickname }}</span>
+        <span class="visitor__nickname parent-comment">{{ commentItem?.visitor.nickname || '' }}</span>
       </template>
       <template #content>
         <div class="comment__content" v-html="commentItem?.content"></div>
@@ -24,7 +24,7 @@
           <template #actions>
             <span
               key="comment-nested-reply-to"
-              @click="clickReplyHandler(childItem.visitor.nickname || '', commentItem?._id)"
+              @click="clickReplyHandler(childItem.visitor.nickname || '', commentItem?._id || '')"
               >回复</span
             >
           </template>
@@ -75,7 +75,6 @@ export default defineComponent({
       }
     })
     const clickReplyHandler = (nickname: string, id: string) => {
-      console.log(id, nickname)
       CommentStore.replyComment.replyToNickname = nickname
       CommentStore.replyCommentId = id
     }
