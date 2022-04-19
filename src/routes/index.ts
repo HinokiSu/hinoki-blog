@@ -1,4 +1,5 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { ArchiveRoutes } from './archiveRoute'
 import { ArticleRoutes } from './articleRoute'
 
 const routes = <RouteRecordRaw[]>[
@@ -13,7 +14,7 @@ const routes = <RouteRecordRaw[]>[
         component: () => import('@web/views/home/index.vue'),
       },
       ...ArticleRoutes,
-
+      ...ArchiveRoutes,
       {
         path: 'about',
         name: 'about',
@@ -23,7 +24,8 @@ const routes = <RouteRecordRaw[]>[
   },
 ]
 const router = createRouter({
-  history: createWebHashHistory('/'),
+  // history: createWebHashHistory('/'),
+  history: createWebHistory('/'),
   routes,
 })
 

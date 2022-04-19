@@ -13,7 +13,7 @@ export const ArticleRoutes: RouteRecordRaw[] = [
     component: () => import('@web/views/article/article-detail.vue'),
   },
   {
-    path: 'article/:keyword',
+    path: 'articles/:keyword',
     name: 'searched-articles',
     component: () => import('@web/views/article/searched-articles.vue'),
   },
