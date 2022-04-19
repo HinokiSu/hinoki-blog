@@ -46,21 +46,29 @@ export default defineComponent({
   }
 
   main {
-    max-width: 900px;
     width: 100%;
     margin-top: 72px;
     margin-bottom: 32px;
+
     .main-wrapper {
-      margin: 0 24px;
+      margin: 0 64px;
       padding-top: 24px;
+    }
+
+    @media screen and (max-width: 965px) {
+      & {
+        & .main-wrapper {
+          margin: 0 24px;
+        }
+      }
     }
   }
 
   footer {
+    width: 100%;
     position: relative;
     margin-top: auto;
     bottom: 0;
-    width: 100%;
     z-index: 1;
     padding: 8px;
   }

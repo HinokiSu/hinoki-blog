@@ -32,6 +32,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .content-layout {
+  width: 100%;
   & .layout__header {
     .header-title {
       font-size: 2rem;
@@ -41,10 +42,10 @@ export default defineComponent({
   }
 
   & .layout__main {
+    width: 800px;
     min-width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 12px;
   }
 }
 </style>
