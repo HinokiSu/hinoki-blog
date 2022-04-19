@@ -11,7 +11,7 @@
         <span class="visitor__nickname parent-comment">{{ commentItem?.visitor.nickname || '' }}</span>
       </template>
       <template #content>
-        <div class="comment__content" v-html="commentItem?.content"></div>
+        <div class="comment__content" v-html="commentItem?.content || ''"></div>
       </template>
 
       <template #datetime>
@@ -22,9 +22,7 @@
       <div class="child-comment" v-if="hasChild">
         <a-comment v-for="childItem in childComments" :key="childItem">
           <template #actions>
-            <span
-              key="comment-nested-reply-to"
-              @click="clickReplyHandler(childItem.visitor.nickname || '', commentItem?._id || '')"
+            <span key="comment-nested-reply-to" @click="clickReplyHandler(childItem.visitor.nickname, commentItem?._id)"
               >回复</span
             >
           </template>
@@ -49,7 +47,7 @@
 <script lang="ts">
 import { IChildComment, IComment } from '@web/interfaces/IComment'
 import { useCommentStore } from '@web/stores/commentStore'
-import { computed, defineComponent, PropType, ref, watchEffect } from 'vue'
+import { computed, defineComponent, getCurrentInstance, PropType, ref, watchEffect } from 'vue'
 import SeparateDot from '../separator/separate-dot.vue'
 
 export default defineComponent({
@@ -61,6 +59,7 @@ export default defineComponent({
     commentItem: Object as PropType<IComment>,
   },
   setup(props) {
+    const { proxy }: any = getCurrentInstance()
     // childComment数据是 JSON类型，需要转换 JSON.parse()
     const childComments = computed((): IChildComment[] => props.commentItem?.child_comments || [])
     const hasChild = ref(false)
@@ -74,9 +73,16 @@ export default defineComponent({
         hasChild.value = true
       }
     })
-    const clickReplyHandler = (nickname: string, id: string) => {
-      CommentStore.replyComment.replyToNickname = nickname
-      CommentStore.replyCommentId = id
+    const clickReplyHandler = (nickname: string | undefined, id: string | undefined) => {
+      if (nickname && id) {
+        CommentStore.replyComment.replyToNickname = nickname
+        CommentStore.replyCommentId = id
+      } else {
+        proxy.$toast['error']({
+          text: '选择回复用户失败',
+          duration: '1500',
+        })
+      }
     }
 
     return {
