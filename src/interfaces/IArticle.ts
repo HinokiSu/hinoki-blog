@@ -5,10 +5,16 @@ export interface IArticle {
   title?: string
   description?: string
   classification?: ICategory[]
-  html?: string
-  updatedAt?: string
+  markdown?: string
+  createdAt?: string
+  totalVisits?: number
 }
 
 export interface IArticles {
+  articles: IArticle[]
+}
+
+export interface IHttpArticles {
+  message: string
   articles: IArticle[]
 }

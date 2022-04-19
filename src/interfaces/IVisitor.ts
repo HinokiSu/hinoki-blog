@@ -17,3 +17,8 @@ export interface ILoginVisitor {
   email: string
   password: string
 }
+
+export interface IHttpVisitor {
+  message: string
+  visitor: IVisitor
+}
