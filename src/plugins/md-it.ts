@@ -5,6 +5,30 @@ import Slugify from 'slugify'
 import hljs from '@web/plugins/hljs'
 import anchor from 'markdown-it-anchor'
 
+// TODO: 待优化
+
+// 提供基础的Markdown解析
+export const markdownBaseParser: any = () =>
+  new MarkdownIt({
+    html: true,
+    linkify: true,
+    typographer: true,
+    langPrefix: 'language-',
+    highlight: (str: any, lang: any) => {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return (
+            '<pre class="hljs"><code>' +
+            hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+            '</code></pre>'
+          )
+        } catch (__) {}
+      }
+      return '<pre class="hljs"><code>' + markdownBaseParser().utils.escapeHtml(str) + '</code></pre>'
+    },
+  })
+
+// 提供基础的Markdown解析和锚点及目录解析
 export const markdownParser: any = (tocRef: any) =>
   new MarkdownIt({
     html: true,
