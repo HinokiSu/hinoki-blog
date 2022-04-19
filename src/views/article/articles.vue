@@ -1,29 +1,29 @@
 <template>
-  <div class="hinoki-articles">
-    <div class="page-header">
-      <span class="header-title">Articles</span>
-    </div>
-    <separate-line></separate-line>
-    <div class="page-main">
+  <div class="articles-wrapper">
+    <content-layout header-title="所有文章">
       <article-item class="article" :article="article" v-for="article in articles" :key="article._id"></article-item>
-    </div>
+    </content-layout>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from 'vue'
-import separateLine from '@web/components/separator/separate-line.vue'
+import { computed, defineComponent, onBeforeUnmount, onMounted } from 'vue'
+import contentLayout from '@web/layouts/content-layout.vue'
 import articleItem from '@web/components/article-item/article-item.vue'
 import { useArticleStore } from '@web/stores/articleStore'
 export default defineComponent({
-  components: { separateLine, articleItem },
   name: 'Articles',
+  components: { articleItem, contentLayout },
   setup() {
     const ArticleStore = useArticleStore()
     const articles = computed(() => ArticleStore.articleList)
 
     onMounted(async () => {
       await ArticleStore.getAllArticle()
+    })
+
+    onBeforeUnmount(() => {
+      ArticleStore.recycleArticleData()
     })
 
     return {
@@ -34,21 +34,8 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.hinoki-articles {
-  & .page-header {
-    .header-title {
-      font-size: 2rem;
-      font-weight: 500;
-      color: var(--accents-5);
-    }
-  }
-
-  & .page-main {
-    min-width: 100%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 24px;
-    margin-top: 24px;
+.articles-wrapper {
+  .article {
   }
 }
 </style>
