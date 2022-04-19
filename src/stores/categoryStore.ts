@@ -1,4 +1,4 @@
-import { ICategories, ICategory } from '@web/interfaces/ICategory'
+import { ICategories, ICategory, IHttpCategory } from '@web/interfaces/ICategory'
 import { httpGet } from '@web/utils/axios'
 import { defineStore } from 'pinia'
 
@@ -18,7 +18,7 @@ export const useCategoryStore = defineStore('category', {
   actions: {
     async getCategories() {
       try {
-        const result = <ICategories>await httpGet({ url: `/category/all` })
+        const result = <IHttpCategory>await httpGet({ url: `/category/all` })
         this.categoryList = result.categories
       } catch (error) {
         console.log(`Error: ${error}`)
@@ -27,11 +27,16 @@ export const useCategoryStore = defineStore('category', {
 
     async getCategoryById(id: string) {
       try {
-        const result = <ICategory>await httpGet({ url: `/category/${id}` })
-        this.categoryData = result
+        const result = <IHttpCategory>await httpGet({ url: `/category/${id}` })
+        this.categoryData = result.categories[0]
       } catch (error) {
         console.log(`Error: ${error}`)
       }
+    },
+
+    recycleData() {
+      this.categoryList.length = 0
+      this.categoryData = {}
     },
   },
 })
