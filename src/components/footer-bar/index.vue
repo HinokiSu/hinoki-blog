@@ -23,8 +23,11 @@ export default defineComponent({
   .icp-info {
     a {
       color: inherit;
-      font-size: 14px;
-      color: var(--accents-6);
+      font-size: 0.6rem;
+      color: var(--accents-5);
+      &:hover {
+        color: var(--accents-6);
+      }
     }
   }
 }
