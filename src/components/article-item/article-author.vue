@@ -1,19 +1,11 @@
 <template>
   <div class="article-author">
     <div class="author-avatar" :style="styles">
-      <fe-img
-        class="avatar-img"
-        src="https://avatars.githubusercontent.com/u/93910087?v=4"
-        :width="avatarSize.width"
-        :height="avatarSize.height"
-        skeleton
-        max-delay="600"
-        alt="github avatar"
-      ></fe-img>
+      <img class="avatar-img" src="https://avatars.githubusercontent.com/u/93910087?v=4" alt="github avatar" />
     </div>
     <div class="author-info">
       <span class="author-name">Hinoki</span>
-      <span class="author-identity"> frontEnd developer </span>
+      <span class="author-identity"> 前端开发者/RPA开发者 </span>
     </div>
   </div>
 </template>
@@ -44,6 +36,7 @@ export default defineComponent({
       avatarSize.value.height = props.height
       styles.value = `width: ${avatarSize.value.width};height: ${avatarSize.value.height}`
     })
+
     return {
       avatarSize,
       styles,
