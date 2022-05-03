@@ -21,7 +21,7 @@ export default defineComponent({
     const ArticleStore = useArticleStore()
     const articles = computed(() => ArticleStore.articleList)
     const pageNum = ref<number>(1)
-    const pageSize = ref<number>(2)
+    const pageSize = ref<number>(8)
     const visible = ref<boolean>(true)
     onMounted(async () => {
       await ArticleStore.getArticleByPagination(pageNum.value, pageSize.value)
