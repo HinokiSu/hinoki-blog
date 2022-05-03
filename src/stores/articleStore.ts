@@ -6,12 +6,14 @@ interface IState {
   articleList: IArticle[]
   articleData: IArticle
   latestArticleList: IArticle[]
+  isFinished: boolean
 }
 export const useArticleStore = defineStore('article', {
   state: (): IState => ({
     articleList: [],
     articleData: {},
     latestArticleList: [],
+    isFinished: false,
   }),
 
   getters: {
@@ -66,6 +68,23 @@ export const useArticleStore = defineStore('article', {
         this.articleList = result.articles
       } catch (error) {
         console.log(`Error Info: get articles by cateId #${cateId} faild. \n Error: ${error}`)
+        throw error
+      }
+    },
+
+    // 分页查询
+    async getArticleByPagination(pageNum: number, pageSize: number) {
+      try {
+        const result = <IHttpArticles>await httpGet({ url: `/article/pagination/${pageNum}/${pageSize}` })
+        if (result.articles.length !== 0) {
+          this.isFinished = false
+          const newData = result.articles
+          this.articleList = this.articleList.concat(newData)
+        } else {
+          this.isFinished = true
+        }
+      } catch (error) {
+        console.log(`Error Info: get articles by pagination faild. \n Error: ${error}`)
         throw error
       }
     },
