@@ -117,7 +117,7 @@ export default defineComponent({
     })
 
     // TODO: 动态获取 可视屏幕的宽度
-    // 965px尺寸式，默认不展开，toc 主体
+    // 965px尺寸式,默认不展开,toc 主体
 
     // 控制toc的展开,
     const tocStatus = ref(false)

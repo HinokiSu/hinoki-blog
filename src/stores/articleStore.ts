@@ -30,7 +30,7 @@ export const useArticleStore = defineStore('article', {
       }
     },
 
-    // get the latest articles, the default limit returns 3 articles
+    // 获取最新的文章
     async getLatestArticle() {
       try {
         const result = <IHttpArticles>await httpGet({ url: '/article/latest' })
@@ -40,6 +40,7 @@ export const useArticleStore = defineStore('article', {
       }
     },
 
+    // 根据id查询文章
     async getArticleById(id: string) {
       try {
         const result = <IHttpArticles>await httpGet({ url: `/article/${id}` })
@@ -50,7 +51,7 @@ export const useArticleStore = defineStore('article', {
       }
     },
 
-    // 模糊查询文章
+    // 模糊查询文章标题
     async getArticleFuzzyByTitle(keyword: string) {
       try {
         const result = <IHttpArticles>await httpGet({ url: `/article/search/${keyword}` })
@@ -91,7 +92,6 @@ export const useArticleStore = defineStore('article', {
 
     recycleArticleData() {
       this.articleData = {}
-      this.articleList.length = 0
     },
   },
 })
