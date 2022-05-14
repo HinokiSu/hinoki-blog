@@ -68,11 +68,10 @@ export default defineComponent({
     const ArticleStore = useArticleStore()
 
     // TODO：待优化，需要 防抖机制
-    const searchHandler = () => {
+    const searchHandler = async () => {
       if (searchStatus.isSearch) {
         // 搜索框中有值，点击搜索图表，进行搜索
-        console.log('is search')
-        ArticleStore.getArticleFuzzyByTitle(searchVal.value).then(
+        await ArticleStore.getArticleFuzzyByTitle(searchVal.value).then(
           () => {
             // 跳转到
             router.push({

@@ -16,6 +16,7 @@ export const useCategoryStore = defineStore('category', {
   getters: {},
 
   actions: {
+    // 获取所有类别
     async getCategories() {
       try {
         const result = <IHttpCategory>await httpGet({ url: `/category/all` })
@@ -24,7 +25,8 @@ export const useCategoryStore = defineStore('category', {
         console.log(`Error: ${error}`)
       }
     },
-
+    
+    // 根据id查到类别
     async getCategoryById(id: string) {
       try {
         const result = <IHttpCategory>await httpGet({ url: `/category/${id}` })

@@ -15,6 +15,6 @@ export interface IArticles {
 }
 
 export interface IHttpArticles {
-  message: string
   articles: IArticle[]
+  message: string
 }

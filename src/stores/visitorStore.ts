@@ -38,7 +38,6 @@ export const useVisitorStore = defineStore('visitor', {
           url: `/visitor/register`,
           data: visitor,
         })
-        console.log('regisiter', res)
       } catch (error) {
         console.log(`Error: ${error}`)
       }
@@ -50,7 +49,6 @@ export const useVisitorStore = defineStore('visitor', {
         url: `/visitor/login`,
         data: visitor,
       })
-
       // 存储到 localStorage
       localStorage.setItem('visitor', JSON.stringify(res.visitor))
       this.visitorData = res.visitor
