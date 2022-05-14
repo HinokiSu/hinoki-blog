@@ -49,6 +49,9 @@ export default defineComponent({
     transform: translate(-50%, -50%);
     line-height: 4px;
     letter-spacing: 0.1rem;
+    @media screen and (max-width: 500px) {
+      letter-spacing: normal;
+    }
   }
   img {
     object-fit: cover;
