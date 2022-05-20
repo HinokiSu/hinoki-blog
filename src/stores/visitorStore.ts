@@ -15,7 +15,7 @@ export const useVisitorStore = defineStore('visitor', {
   getters: {
     getVisitor: (state) => {
       if (Object.keys(state.visitorData).length === 0) {
-        state.visitorData = JSON.parse(localStorage.getItem('visitor') || '{}')
+        state.visitorData = JSON.parse(sessionStorage.getItem('visitor') || '{}')
       }
       return state.visitorData
     },
@@ -29,7 +29,7 @@ export const useVisitorStore = defineStore('visitor', {
   actions: {
     // 获取本地
     getLocalVisitor() {
-      this.visitorData = JSON.parse(localStorage.getItem('visitor') || '{}')
+      this.visitorData = JSON.parse(sessionStorage.getItem('visitor') || '{}')
     },
     // 注册 visitor
     async registerVisitor(visitor: IRegisterVisitor) {
@@ -49,8 +49,8 @@ export const useVisitorStore = defineStore('visitor', {
         url: `/visitor/login`,
         data: visitor,
       })
-      // 存储到 localStorage
-      localStorage.setItem('visitor', JSON.stringify(res.visitor))
+      // 存储到 sessionStorage
+      sessionStorage.setItem('visitor', JSON.stringify(res.visitor))
       this.visitorData = res.visitor
     },
   },

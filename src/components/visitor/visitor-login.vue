@@ -1,13 +1,12 @@
 <template>
   <div class="login-form">
     <a-form
+      ref="formRef"
       :model="formState"
       name="basic"
       :labelCol="{ span: 6 }"
       :wrapperCol="{ span: 12 }"
       autocomplete="off"
-      @finish="onFinish"
-      @finishFailed="onFinishFailed"
     >
       <a-form-item
         label="邮箱"
@@ -34,12 +33,14 @@
 <script lang="ts">
 import { ILoginVisitor } from '@web/interfaces/IVisitor'
 import { useVisitorStore } from '@web/stores/visitorStore'
-import { computed, defineComponent, getCurrentInstance, onBeforeMount, reactive } from 'vue'
+import { computed, defineComponent, getCurrentInstance, onBeforeMount, reactive, ref } from 'vue'
 
 export default defineComponent({
   name: 'VisitorLogin',
   emits: ['click', 'closeModal'],
   setup(props, { emit }) {
+    // 表单ref
+    const formRef = ref()
     const formState = reactive<ILoginVisitor>({
       email: '',
       password: '',
@@ -52,14 +53,6 @@ export default defineComponent({
     })
 
     const VisitorStore = useVisitorStore()
-
-    const onFinish = (values: any) => {
-      console.log('Success:', values)
-    }
-
-    const onFinishFailed = (errorInfo: any) => {
-      console.log('Failed1:', errorInfo)
-    }
 
     // 切换到注册
     const switchRegister = () => {
@@ -74,7 +67,8 @@ export default defineComponent({
             text: '登录成功',
             duration: '1200',
           })
-          // emit('closeModal')
+          // 清空表单信息
+          formRef.value.resetFields()
           VisitorStore.visitorStatus = true
         },
         () =>
@@ -90,9 +84,8 @@ export default defineComponent({
       formState.password = ''
     })
     return {
+      formRef,
       formState,
-      onFinish,
-      onFinishFailed,
       switchRegister,
       isDisabled,
       onSubmit,

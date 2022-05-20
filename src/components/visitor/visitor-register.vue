@@ -1,15 +1,6 @@
 <template>
   <div class="visitor-register__wrapper">
-    <a-form
-      ref="formRef"
-      name="custom-validation"
-      :model="formState"
-      :rules="rules"
-      v-bind="layout"
-      @finish="handleFinish"
-      @validate="handleValidate"
-      @finishFailed="handleFinishFailed"
-    >
+    <a-form ref="formRef" name="custom-validation" :model="formState" :rules="rules" v-bind="layout">
       <a-form-item has-feedback label="昵称" name="nickname">
         <a-input v-model:value="formState.nickname" placeholder="请输入昵称✍..." />
       </a-form-item>
@@ -65,7 +56,7 @@ export default defineComponent({
       return !(formState.nickname && formState.email && formState.pass && formState.checkPass)
     })
 
-    // 验证 昵称
+    // 校验 昵称
     let validateNickname = async (_rule: Rule, value: string) => {
       if (value === '') {
         return Promise.reject('请输入昵称')
@@ -87,6 +78,7 @@ export default defineComponent({
         return Promise.resolve()
       }
     }
+    // 校验邮件
     let validateEmail = async (_rule: Rule, value: string) => {
       if (value === '') {
         return Promise.reject('请输入邮箱')
@@ -97,6 +89,7 @@ export default defineComponent({
         return Promise.resolve()
       }
     }
+    // 校验第一次密码
     let validatePass = async (_rule: Rule, value: string) => {
       if (value === '') {
         return Promise.reject('请输入密码')
@@ -113,6 +106,7 @@ export default defineComponent({
         return Promise.resolve()
       }
     }
+    // 校验第二次密码
     let validatePass2 = async (_rule: Rule, value: string) => {
       if (value === '') {
         return Promise.reject('请再次输入密码')
@@ -136,17 +130,18 @@ export default defineComponent({
       labelCol: { span: 6 },
       wrapperCol: { span: 12 },
     }
-    const handleFinish = (values: FormState) => {
-      console.log(values, formState)
-    }
-    const handleFinishFailed = (errors: any) => {
-      console.log(errors)
-    }
+
+    // 重置表单
     const resetForm = () => {
       formRef.value.resetFields()
     }
-    const handleValidate = (...args: any[]) => {
-      console.log(args)
+
+    // 清除表单数据
+    const clearForm = () => {
+      formState.nickname = ''
+      formState.email = ''
+      formState.pass = ''
+      formState.checkPass = ''
     }
 
     // 注册按钮
@@ -161,6 +156,11 @@ export default defineComponent({
             text: '注册成功',
             duration: '1200',
           })
+          // 清除表单原有数据
+          formRef.value.resetFields()
+          // 切换到登录模态框
+          switchLogin()
+          // 关闭登录模态框
           emit('closeModal')
         })
         .catch(() => {
@@ -177,10 +177,7 @@ export default defineComponent({
     }
 
     onBeforeMount(() => {
-      formState.nickname = ''
-      formState.email = ''
-      formState.pass = ''
-      formState.checkPass = ''
+      clearForm()
     })
     return {
       formState,
@@ -188,10 +185,7 @@ export default defineComponent({
       formRef,
       rules,
       layout,
-      handleFinishFailed,
-      handleFinish,
       resetForm,
-      handleValidate,
       switchLogin,
       onSubmit,
     }
