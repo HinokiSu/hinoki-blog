@@ -14,6 +14,7 @@ export type IParentComment = {
   visitor_id: string
   content: string
   createdAt: string
+  child_comments: []
 }
 
 export type IChildComment = {

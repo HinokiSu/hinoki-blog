@@ -48,13 +48,10 @@ export const useCommentStore = defineStore('comment', {
     // 添加父级评论
     async addCommentByArticleId(comment: IParentComment) {
       try {
-        console.log('comment', comment)
         const res = <IHttpComment>await httpPost({
           url: `/comment/add`,
           data: comment,
         })
-
-        console.log(res)
       } catch (error) {
         console.log(`Error: ${error}`)
       }

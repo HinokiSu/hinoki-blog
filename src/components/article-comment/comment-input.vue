@@ -111,7 +111,7 @@ export default defineComponent({
     })
 
     watchEffect(() => {
-      // 根据 localStorage中的键值对，区判断visitor是否登录
+      // 根据 SessionStorage中的键值对，区判断visitor是否登录
       if (loginStatus.value) {
         // 已登录
         commentStatus.isDisabledInput = false
@@ -142,6 +142,7 @@ export default defineComponent({
       visitor_id: '',
       content: '',
       createdAt: '',
+      child_comments: [],
     })
 
     const replyComment = reactive(<IReplyComment>{
@@ -182,7 +183,7 @@ export default defineComponent({
     // 退出
     const signOut = () => {
       VisitorStore.visitorStatus = false
-      localStorage.removeItem('visitor')
+      sessionStorage.removeItem('visitor')
       VisitorStore.visitorData = {}
       commentStatus.isDisabledInput = true
       commentStatus.isVisible = false
