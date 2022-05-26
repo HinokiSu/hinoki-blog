@@ -18,7 +18,10 @@ export interface ILoginVisitor {
   password: string
 }
 
-export interface IHttpVisitor {
-  message: string
+export interface IHttpVisitor extends IHttpMessage {
   visitor: IVisitor
+}
+
+export interface IHttpMessage {
+  message: string
 }

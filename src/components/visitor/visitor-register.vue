@@ -146,29 +146,33 @@ export default defineComponent({
 
     // 注册按钮
     const onSubmit = async () => {
-      await VisitorStore.registerVisitor({
+      const res = await VisitorStore.registerVisitor({
         nickname: formState.nickname,
         email: formState.email,
         password: formState.pass,
+      }).catch(() => {
+        proxy.$toast['error']({
+          text: '注册失败，请稍后重试',
+          duration: '1500',
+        })
       })
-        .then(() => {
-          proxy.$toast['success']({
-            text: '注册成功',
-            duration: '1200',
-          })
-          // 清除表单原有数据
-          formRef.value.resetFields()
-          // 切换到登录模态框
-          switchLogin()
-          // 关闭登录模态框
-          emit('closeModal')
+      if (res !== '' && res !== undefined) {
+        proxy.$toast['warning']({
+          text: res,
+          duration: '1500',
         })
-        .catch(() => {
-          proxy.$toast['error']({
-            text: '注册失败，请稍后重试',
-            duration: '1500',
-          })
+      } else if (res === '') {
+        proxy.$toast['success']({
+          text: '注册成功',
+          duration: '1200',
         })
+        // 清除表单原有数据
+        formRef.value.resetFields()
+        // 切换到登录模态框
+        switchLogin()
+        // 关闭登录模态框
+        emit('closeModal')
+      }
     }
 
     // 切换到登录

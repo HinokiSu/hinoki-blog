@@ -1,4 +1,4 @@
-import { IHttpVisitor, ILoginVisitor, IRegisterVisitor, IVisitor } from '@web/interfaces/IVisitor'
+import { IHttpMessage, IHttpVisitor, ILoginVisitor, IRegisterVisitor, IVisitor } from '@web/interfaces/IVisitor'
 import { httpGet, httpPost } from '@web/utils/axios'
 import { defineStore } from 'pinia'
 
@@ -32,12 +32,13 @@ export const useVisitorStore = defineStore('visitor', {
       this.visitorData = JSON.parse(sessionStorage.getItem('visitor') || '{}')
     },
     // 注册 visitor
-    async registerVisitor(visitor: IRegisterVisitor) {
+    async registerVisitor(visitor: IRegisterVisitor): Promise<string | undefined> {
       try {
-        const res = await httpPost({
+        const res = <IHttpMessage>await httpPost({
           url: `/visitor/register`,
           data: visitor,
         })
+        return res.message
       } catch (error) {
         console.log(`Error: ${error}`)
       }
